@@ -1,0 +1,185 @@
+@import url("root.css");
+
+:root {
+    --filter-shadow: 0 0 15px 0 #0000003d;
+    --accent: #0A58D0;
+    --foreground-description: #504f4f;
+}
+
+html {
+    font-family: 'Google Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: max-content auto;
+}
+
+header {
+    display: grid;
+    background-color: #ffffff;
+    box-shadow: var(--filter-shadow);
+}
+    header img {
+        width: 30px;
+        height: auto;
+    }
+    header > section {
+        display: grid;
+        padding: 20px 20px 10px;
+        grid-template-areas: "brand x menu";
+        grid-auto-columns: max-content auto max-content;
+        align-items: center;
+    }
+        header > section .brand {
+            grid-area: brand;
+        }
+        header > section .menu {
+            grid-area: menu;
+            color: var(--foreground-description);
+            margin: -0.75em -0.75em -0.75em 0;
+        }
+            header > section .menu button {
+                padding: 0.75em;
+                border-radius: 100%;
+            }
+            header > section .menu button:not(:active) {
+                background: transparent;
+            }
+    header nav {
+        display: grid;
+        grid-auto-flow: column;
+    }
+        header nav > div {
+            position: relative;
+            display: grid;
+            grid-auto-flow: column;
+            padding: 15px 10px;
+            font-size: 0.8em;
+            letter-spacing: 0.05em;
+            text-align: center;
+            transition: 0.15s background;
+            gap: 1ch;
+            justify-content: center;
+            align-items: center;
+        }
+        header nav > div:active {
+            background: #00000020;
+        }
+        header nav > div.active::after {
+            content: '';
+            background-color: var(--accent);
+            display: block;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+            header nav > div span.material-symbols-outlined {
+                font-size: 1.35em;
+            }
+            header nav > div span {
+                color: var(--foreground-description);
+            }
+            header nav > div.active span {
+                color: var(--accent);
+            }
+
+article {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+    article .parts {
+        scroll-snap-align: start;
+        padding: 20px;
+    }
+
+
+.list {
+    display: grid;
+    gap: 25px;
+    margin: 10px 0;
+}
+    .list .item {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content 50px auto max-content;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        margin: -10px -20px;
+        transition: 0.15s background;
+    }
+    .list .item:has(.quantity-group.hidden):active {
+        background-color: #00000010;
+    }
+        .list .item .thumbnail {
+            background: #EAEAEA;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            border-radius: 7px;
+        }
+        .list .item .description {
+            display: grid;
+        }
+            .list .item .description .name {
+                font-weight: 500;
+            }
+            .list .item .description .calorie {
+                color: var(--foreground-description);
+            }
+        .list .item .quantity-group:not(.hidden) {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 1.5ch;
+            align-items: center;
+        }
+            .list .item .quantity-group:not(.hidden) button {
+                display: grid;
+                font-size: 0.9em;
+                padding: 0;
+                align-content: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 6px;
+                font-weight: bold;
+            }
+
+#Grid_Summary {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background-color: var(--accent);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px 0 #00000050;
+    transition: 0.25s transform;
+}
+#Grid_Summary.collapsed {
+    transform: translateY(calc(100% + 20px));
+}

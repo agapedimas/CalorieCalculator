@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Calorie Calculator - Pameran St. Yusup 2 Bandung</title>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+        <meta content="#ffffff" ad-theme-color="" name="theme-color">
+        <link rel="icon" href="icon.png"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="manifest" href="/admin/manifest.json">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+    <body>
+        <header>
+            <section>
+                <div class="brand">
+                    <img src="icon.png"/>
+                </div>
+                <div class="menu">
+                    <button id="Button_Refresh">
+                        <span class="material-symbols-outlined">refresh</span>
+                    </button>
+                </div>
+            </section>
+            <nav id="Navigation_Main">
+                <div class="active" id="NavItem_MakananBerat" data-part="MakananBerat">
+                    <span class="material-symbols-outlined">restaurant</span>
+                    <span>Makanan Berat</span>
+                </div>
+                <div id="NavItem_MakananRingan" data-part="MakananRingan">
+                    <span class="material-symbols-outlined">cookie</span>
+                    <span>Snack</span>
+                </div>
+                <div id="NavItem_Minuman" data-part="Minuman">
+                    <span class="material-symbols-outlined">glass_cup</span>
+                    <span>Minuman</span>
+                </div>
+            </nav>
+        </header>
+        <article id="Article_Parts">
+            <section class="parts" id="Parts_MakananBerat" data-part="MakananBerat">
+                <div class="list" id="List_MakananBerat"></div>
+            </section>
+            <section class="parts" id="Parts_MakananRingan" data-part="MakananRingan">
+                <div class="list" id="List_MakananRingan"></div>
+            </section>
+            <section class="parts" id="Parts_Minuman" data-part="Minuman">
+                <div class="list" id="List_Minuman"></div>
+            </section>
+        </article>
+        <div id="Grid_Summary" class="collapsed">
+            <span>Total kalori:</span>
+            <span id="Text_TotalCalories"></span>
+        </div>
+        <script src="datasets/makananBerat.js"></script>
+        <script src="datasets/makananRingan.js"></script>
+        <script src="datasets/minuman.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>
