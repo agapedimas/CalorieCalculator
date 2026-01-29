@@ -2,12 +2,13 @@
 
 :root {
     --filter-shadow: 0 0 15px 0 #0000003d;
-    --accent: #0A58D0;
+    --accent: #EF4945;
     --foreground-description: #504f4f;
+    --border-separator: #E3E2E2;
 }
 
 html {
-    font-family: 'Google Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * {
@@ -31,10 +32,11 @@ body {
 header {
     display: grid;
     background-color: #ffffff;
-    box-shadow: var(--filter-shadow);
+    /* box-shadow: var(--filter-shadow); */
+    border-bottom: 1px solid var(--border-separator);
 }
     header img {
-        width: 30px;
+        width: 40px;
         height: auto;
     }
     header > section {
@@ -46,6 +48,13 @@ header {
     }
         header > section .brand {
             grid-area: brand;
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            gap: 1em;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4f4f4f;
         }
         header > section .menu {
             grid-area: menu;
@@ -61,7 +70,9 @@ header {
             }
     header nav {
         display: grid;
+        align-items: center;
         grid-auto-flow: column;
+        grid-auto-columns: auto max-content;
     }
         header nav > div {
             position: relative;
@@ -75,6 +86,13 @@ header {
             gap: 1ch;
             justify-content: center;
             align-items: center;
+        }
+        header nav > span.separator {
+            display: block;
+            width: 1px;
+            height: 30px;
+            background: var(--border-separator);
+            margin: 0 1ch;
         }
         header nav > div:active {
             background: #00000020;
@@ -106,6 +124,7 @@ article {
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -113,6 +132,10 @@ article {
     article .parts {
         scroll-snap-align: start;
         padding: 20px;
+        overflow-y: auto;
+    }
+    body:has(#Grid_Summary:not(.collapsed)) article .parts {
+        padding-bottom: 115px;
     }
 
 
@@ -136,10 +159,11 @@ article {
     }
         .list .item .thumbnail {
             background: #EAEAEA;
-            width: 100%;
+            width: 50px;
             height: auto;
             aspect-ratio: 1 / 1;
             border-radius: 7px;
+            object-fit: contain;
         }
         .list .item .description {
             display: grid;
@@ -168,18 +192,41 @@ article {
                 font-weight: bold;
             }
 
-#Grid_Summary {
+#Grid_Summary {    
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto max-content;
+    align-items: center;
     position: fixed;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--accent);
     color: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 10px 15px 0 #00000050;
+    padding: 20px;
+    border-radius: 0;
     transition: 0.25s transform;
 }
 #Grid_Summary.collapsed {
     transform: translateY(calc(100% + 20px));
 }
+    #Grid_Summary .description {
+        display: grid;
+    }
+        #Grid_Summary .description #Text_TotalCalories {
+            font-size: 1.95em;
+            font-weight: bold;
+            line-height: 1;
+            margin-top: 0.05em;
+        }
+    #Grid_Summary button {
+        display: grid;
+        grid-auto-flow: column;
+        font-size: 1.1em;
+        padding: 0.5em 0.7em;
+        gap: 0.5em;
+        height: 50px;
+        align-items: center;
+        align-content: center;
+        color: var(--accent);
+    }

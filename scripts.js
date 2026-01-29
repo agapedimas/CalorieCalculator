@@ -1,5 +1,4 @@
-
-const navigationItems = [...Navigation_Main.children];
+const navigationItems = [...Navigation_Main.children].filter(o => o.tagName == "DIV");
 for (const item of navigationItems) {
     item.onclick = function() {
         Article_Parts.scrollLeft = window["Parts_" + item.dataset.part].offsetLeft;
@@ -42,7 +41,7 @@ function appendListItem(list, container, category) {
 function renderItem(data) {
     const thumbnailElement = document.createElement("img");
     thumbnailElement.classList.add("thumbnail");
-    thumbnailElement.src = "";
+    thumbnailElement.src = "datasets/assets/" + data.id + ".png";
 
     const nameElement = document.createElement("span");
     nameElement.classList.add("name");
@@ -50,7 +49,7 @@ function renderItem(data) {
 
     const calorieElement = document.createElement("span");
     calorieElement.classList.add("calorie");
-    calorieElement.innerText = data.calorie + " kal";
+    calorieElement.innerText = data.calorie + " kcal";
 
     const descriptionElement = document.createElement("div");
     descriptionElement.classList.add("description");
@@ -110,12 +109,10 @@ function renderItem(data) {
     function updateQuantity() {
         if (data.quantity == 0) {
             checkElement.checked = false;
-            quantityGroupElement.classList.add("hidden");
             selectedItems.delete(data.id);
         }
         else {
             checkElement.checked = true;
-            quantityGroupElement.classList.remove("hidden");
             selectedItems.set(data.id, data);
         }
         quantityElement.innerText = data.quantity;
@@ -131,11 +128,6 @@ function renderItem(data) {
     containerElement.append(descriptionElement);
     containerElement.append(quantityGroupElement);
     containerElement.data = data;
-    containerElement.onclick = function() {
-        if (data.quantity == 0) {
-            data.quantity++;
-        }
-    }
 
     return containerElement;
 }
@@ -143,7 +135,7 @@ function renderItem(data) {
 function updateSummary() {
     if (selectedItems.size == 0) {
         Grid_Summary.classList.add("collapsed");
-        Text_TotalCalories.innerText = "0 kal";
+        Text_TotalCalories.innerText = "0 kcal";
     }
     else {
         Grid_Summary.classList.remove("collapsed");
@@ -153,6 +145,6 @@ function updateSummary() {
         for (const item of selectedItems)
             totalCalories += item[1].calorie * item[1].quantity;
 
-        Text_TotalCalories.innerText = totalCalories + " kal";
+        Text_TotalCalories.innerText = totalCalories + " kcal";
     }
 }
