@@ -19,10 +19,10 @@
 		}
 	],
 
-	"start_url": "/",
+	"start_url": "https://agapedimas.github.io/CalorieCalculator/",
 	"background_color": "#FFFFFF",
 	"theme_color": "#FFFFFF", 
 	"display": "standalone",
 	"display_override": ["window-controls-overlay", "standalone"],
-	"scope": "/"
+	"scope": "https://agapedimas.github.io/CalorieCalculator/"
 }
